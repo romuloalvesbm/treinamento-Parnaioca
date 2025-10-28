@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 const useAuth = () => {
   const [email, setEmail] = useState('');
 
-  const router = useRouter()
+  const router = useRouter();  
+
+  const getUser = () => {
+    return JSON.parse(localStorage.getItem('user') || '{}');
+  };
 
   // informacoes
   const storeUser = (user: { email: string }) => {
@@ -16,9 +20,18 @@ const useAuth = () => {
     router.push('/dashboard');
   }
 
+  const removeUser = () => {
+
+    const user = getUser();
+
+    if (user && user.email) {
+      localStorage.removeItem('user');
+    }
+    router.push('/auth/login');
+  };
+
   const verifyAuth = () => {
-    const userRaw = localStorage.getItem('user') || '{}';
-    const user = JSON.parse(userRaw);
+    const user = getUser();
 
     if (user && user.email) {
       router.push('/dashboard');
@@ -27,7 +40,7 @@ const useAuth = () => {
   }
 
   const verifyGuest = () => {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = getUser();
 
     if (!user.email) {
       router.push('/auth/login');
@@ -36,10 +49,10 @@ const useAuth = () => {
   }
 
   useEffect(() => {
-    const userRaw = localStorage.getItem('user') || '{}';
+    const userRaw = getUser();
 
-    if (userRaw) {
-      const user = JSON.parse(userRaw);
+    if (userRaw && userRaw.email) {     
+      const user = userRaw;
       setEmail(user.email || '')
     }
   }, [])
@@ -49,6 +62,7 @@ const useAuth = () => {
     storeUser,
     verifyAuth,
     verifyGuest,
+    removeUser,
     email
   }
 }

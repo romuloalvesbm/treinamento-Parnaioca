@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled"; // O projeto já usa o Material UI (MUI) e não tem nenhuma necessidade de usar o styled-components
 
 // Container centralizado na tela
 export const Container = styled.div`

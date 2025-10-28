@@ -27,7 +27,7 @@ export default function AdminLayout({
         <div>
           <div className="flex gap-2">
             <div className="w-[16rem]">
-              <Menu email={email} />
+              <Menu email={JSON.stringify(email)} />
             </div>
             <div className="w-full">
               <Navbar />
