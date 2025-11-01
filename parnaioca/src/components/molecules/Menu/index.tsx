@@ -7,7 +7,7 @@ const Menu = ({ email }: { email: string }) => {
 
   return (
     <div className="bg-gray-50 h-screen">
-      <div className="flex flex-col gap-2 border-b p-4">
+      <div className="flex flex-col gap-2 border-b p-3">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">PP</span>

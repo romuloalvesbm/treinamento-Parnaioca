@@ -1,8 +1,19 @@
+'use client';
+
 import CardTotal from '@/components/atoms/CardTotal';
 import CardInfo from '@/components/molecules/CardInfo';
+import { useMenuContext } from '@/context/MenuContext';
 import { Bed, BedSingle, UserCheck, Users } from 'lucide-react';
+import { useEffect } from 'react';
 
 const DashboardPage = () => {
+
+   const { setTitulo } = useMenuContext();
+
+    useEffect(() => {
+    setTitulo("Dashboard"); // define o título ao abrir a página
+  }, [setTitulo]);
+   
   return (
     <main>
       <div className="grid grid-cols-4 gap-6 mb-6">
